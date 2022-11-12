@@ -1,8 +1,12 @@
 
 function game(){
-    prompt("pick Rock Paper or Scissors");
-
-
+    let score = ""
+    for (let i = 0; i < 5; i++) {
+    let playerSelection = prompt("pick Rock Paper or Scissors");
+    let round_Result = playRound(playerSelection,getComputerChoice())
+    score += "round " + i + ":" + round_Result + "\n" ;
+    }
+    console.log(score);
 }
 
 
