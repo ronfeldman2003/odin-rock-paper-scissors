@@ -1,10 +1,15 @@
 
-function game(){
+function game() {
     let score = ""
     for (let i = 0; i < 5; i++) {
-    let playerSelection = prompt("pick Rock Paper or Scissors");
-    let round_Result = playRound(playerSelection,getComputerChoice())
-    score += "round " + i + ":" + round_Result + "\n" ;
+        let playerSelection = prompt("pick Rock Paper or Scissors");
+        let round_Result = playRound(playerSelection, getComputerChoice())
+        if (round_Result === "wrong_input") {
+            alert("Please choose only from the available opptions");
+            i--
+        } else {
+            score += "round " + i + ":" + round_Result + "\n";
+        }
     }
     console.log(score);
 }
@@ -62,7 +67,8 @@ function playRound(playerSelection, computerSelection = getComputerChoice()) {
                     break;
             }
             break;
-
+        default:
+            return "wrong_input"
     }
 
 }
