@@ -1,19 +1,45 @@
+//const divs = document.querySelector('div');
+//console.log(divs);
+//console.log(divs);
+//divs.forEach(div => div.addEventListene('click',getCard));
+let player_score = 5;
+let cpu_score = 0;
+let cards = document.querySelectorAll('div.play-option');
+let rounds = 0
+const player_score_text = document.querySelector('div.score-player-1');
+const cpu_score_text = document.querySelector('div.score-player-2');
 
-function game() {
-    let score = ""
-    for (let i = 0; i < 5; i++) {
-        let playerSelection = prompt("pick Rock Paper or Scissors");
-        let round_Result = playRound(playerSelection, getComputerChoice())
-        if (round_Result === "wrong_input") {
-            alert("Please choose only from the available opptions");
-            i--
-        } else {
-            score += "round " + i + ":" + round_Result + "\n";
-        }
-    }
-    console.log(score);
+//cards.forEach(card => card.addEventListener('click',readCard));
+function readCard(e){
+    let div = this;
+    let player_choice = div.getElementsByClassName('text')[0].textContent
+    console.log(`Player:${player_choice}`);
+    console.log(playRound(player_choice));
+    score_update();
+    if(rounds == 1) game_end();
+    rounds--;
+
 }
 
+function score_update(){
+    
+    player_score_text.textContent = `You:${player_score}`;
+    cpu_score_text.textContent = `Cpu:${cpu_score}`;
+}
+
+function game_start() {
+    player_score = 0;
+    cpu_score = 0;
+    rounds = 5;
+    score_update();
+    cards.forEach(card => card.addEventListener('click',readCard));
+}
+
+function game_end() {
+    //player_score = 0;
+    //cpu_score = 0
+    cards.forEach(card => card.removeEventListener('click',readCard));
+}
 
 
 
@@ -21,8 +47,11 @@ function getComputerChoice() {
 
     let random = Math.floor(Math.random() * 3);
     const opptions = ["Rock", "Paper", "Scissors"];
-    return opptions[random];
+    let computer_choice = opptions[random];
+    console.log(`Cpu:${computer_choice}`);
+    return computer_choice;
 }
+
 function playRound(playerSelection, computerSelection = getComputerChoice()) {
     const player = playerSelection.toLowerCase();
     const computer = computerSelection.toLowerCase();
@@ -34,33 +63,44 @@ function playRound(playerSelection, computerSelection = getComputerChoice()) {
                     return "Tie"
                     break;
                 case "paper":
+                    cpu_score++;
                     return "You Lose! Paper beats Rock"
                     break;
                 case "scissors":
+                    player_score++;
                     return "You Win! Rock beats Scissors"
+                    
                     break;
             }
             break;
         case "paper":
             switch (computer) {
                 case "rock":
+                    player_score++;
                     return "You Win! Paper beats Rock"
+                    
                     break;
                 case "paper":
                     return "Tie"
                     break;
                 case "scissors":
+                    cpu_score++;
                     return "You Lose! Scissors beats Paper"
+                    
                     break;
             }
             break;
         case "scissors":
             switch (computer) {
                 case "rock":
+                    cpu_score++;
                     return "You Lose! Rock beats Scissors"
+                    
                     break;
                 case "paper":
+                    player_score++;
                     return "You Win! Scissors beats Paper"
+                    
                     break;
                 case "scissors":
                     return "Tie"
