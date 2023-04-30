@@ -21,7 +21,7 @@ html,body{
 } 
 .score-bar .item{
     font-size: 100px;
-    border: 2px solid green;
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -30,29 +30,77 @@ html,body{
     margin:10px;
 }
 .play-bar{
-    border: 2px dashed bl;
     display: flex;
     align-self: center;
 }
 .play-option{
-    
+    background-color: #214dff;
+    transition:0.4s
+}
+.cpu-option{
+    background-color: #ff2021;
+}
+.played-player{
+    transition:0.8s;
+    transform: translate(0px,-120%)
+}
+.played-cpu{
+    transition:0.8s;
+    transform: translate(0px,120%)
+}
+.start-btn{
+    border: 1px solid black;
+    background-color: #089200;
+    display: flex;
+    width: 500px;
+    height: 200px;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+
+}
+.win-text{
+    border: 1px solid black;
+    background-color: #214dff;
+    display: flex;
+    width: 500px;
+    height: 200px;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+}
+.lose-text{
+    border: 1px solid black;
+    background-color: #ff2021;
+    display: flex;
+    width: 500px;
+    height: 200px;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+}
+.card{
     border: 2px solid black;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 215;
+    height: 230;
     padding: 5px;
     margin:5px;
-    transition:0.4s;
-
 }
 .play-option:hover{
     transform: translate(5px,-10px);
+    
 }
 .played{
     background-color: red;
 }
-.play-option .icon{
+.card .icon{
 
     aspect-ratio: 1/1;
     width: 200px;
@@ -60,4 +108,14 @@ html,body{
 .footer{
     border: 2px dashed yellow;
     height: 50px;
+}
+.game-board{
+    display: flex;
+    gap:50px;
+    align-self: center;
+}
+.game-board-cards{
+    width: 215px;
+    height: 235px;
+    border: 1px dashed black;
 }
